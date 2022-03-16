@@ -15,47 +15,42 @@ module.exports = {
             });
         }
 
-        return response.json(productCategoryResponse);
+        response.send(productCategoryResponse);
     },
 
     async read(request, response){
 
-        async function getProductCategoryWithQuery(query) {
-            if (query.name && query.description){
-                console.log('hello');
-                return await ProductCategory.find({name: query.name, description: query.description}, 'name description').exec();
-            } else {
-                if (query.name)
-                    return await ProductCategory.find({name: query.name}, 'name description').exec();
-                else if (query.description)
-                    return await ProductCategory.find({description: query.description}, 'name description').exec();
-                else
-                    return await ProductCategory.find({}, 'name description').exec();
-            }
-        }
-
         const productCategoryReturnQuery = 
-            getProductCategoryWithQuery(request.query);
+            // getProductCategoryWithQuery(request.query);
+            await ProductCategory.find(request.query, 'name description').exec();
 
-        productCategoryReturnQuery.then(function(productCategories){
-            response.send(productCategories)
-        })
+        response.send(productCategoryReturnQuery);
     },
 
     async update(request, response){
         const {name, description} = request.body;
 
-        console.log(request.params.id);
-
-        const productCategoryReturnQuery = await ProductCategory.findOneAndUpdate({_id: request.params.id}, {name, description}, {new: true});
-
-        return response.json(productCategoryReturnQuery)
+        ProductCategory.findOne({_id: request.params.id}, (err, foundProductCategory)  =>  {
+            if (name !== undefined) {
+                foundProductCategory.name = name;
+            }
+            if (description !== undefined) {
+                foundProductCategory.description = description;
+            }
+            foundProductCategory.save((e, updatedProductCategory) => {
+                if(err) {
+                    response.status(400).send(e);
+                } else {
+                    response.send(updatedProductCategory)
+                }
+            })
+        });
     },
 
     async delete(request, response){
         const productCategoryReturnQuery = await ProductCategory.deleteOne({_id: request.params.id});
 
-        return response.json(productCategoryReturnQuery)
+        response.send(productCategoryReturnQuery);
     }
 
 }
