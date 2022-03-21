@@ -1,0 +1,31 @@
+.navbar-menu {
+    height: 60px;
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+  
+nav {
+  justify-content: space-between;
+  background: rgb(167, 167, 167);
+  top: 0;
+}
+
+.navbar-item-user {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-item {
+  padding: 0 1rem;
+  height: 100%;
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  color: rgb(32, 32, 32);
+  transition: background-color 0.2s ease-in-out;
+};
+

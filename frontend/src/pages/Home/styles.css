@@ -1,0 +1,16 @@
+.main-frame {
+    margin: 50px 50px;
+    align-content: center;
+}
+
+.main-title {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}
+
+p.text-login {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+}

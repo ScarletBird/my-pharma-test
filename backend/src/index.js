@@ -11,7 +11,7 @@ const server = http.Server(app)
 
 //setupWebSocket(server);
 
-mongoose.connect('mongodb+srv://MyPharma_Gustavo:MyPharma%4001@clustergustavo.xl293.mongodb.net/MyPharmaDatabase?retryWrites=true&w=majority',  {
+mongoose.connect(process.env.MONGODB_URI,  {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
@@ -20,4 +20,4 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-server.listen(3333);
+server.listen(process.env.PORT || 3333);
