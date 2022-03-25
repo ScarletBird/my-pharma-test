@@ -1,0 +1,23 @@
+.button-space {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.logout-button {
+    margin: 10px;
+    width: 10%;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.confirmation-button {
+    background-color: green;
+}
+
+.cancelation-button {
+    background-color: red;
+}

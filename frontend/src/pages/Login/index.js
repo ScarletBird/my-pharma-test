@@ -22,6 +22,8 @@ export default function Login() {
             console.log(localStorage)
 
             navigate('/');
+            window.location.reload(false);
+
         } catch (err) {
             alert('Falha no login, tente novamente.');
         }
@@ -47,7 +49,7 @@ export default function Login() {
                     <button className="button" type="submit">Entrar</button>
 
                     <Link to="/register" className="back-link">
-                        <LoginIcon size={16} color="#E02041" />
+                        <LoginIcon size={16} />
                         Não tenho cadastro
                     </Link>
                 </form>
